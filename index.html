@@ -10,6 +10,8 @@
 <body>  
     <div>
         <h1>Want a break from the ads?</h1>
+        <!-- Play button to start audio -->
+        <button id="playButton">Play Audio</button>
     </div>
 
     <!-- Audio element -->
@@ -20,18 +22,20 @@
 
     <script>
         var audio = document.getElementById("audio");
+        var playButton = document.getElementById("playButton");
 
-        // Set the starting point of the audio to 8 seconds
-        audio.addEventListener("canplaythrough", function() {
-            audio.currentTime = 8; // Start playing from 8 seconds
-            audio.loop = true; // Loop the audio
-            audio.play(); // Start playing the audio
+        // Event listener for button click
+        playButton.addEventListener("click", function() {
+            audio.currentTime = 8; // Start the audio from 8 seconds
+            audio.play(); // Play the audio
+            audio.loop = true; // Set audio to loop
+            playButton.style.display = "none"; // Hide the play button after clicking it
         });
 
-        // This will ensure the audio keeps looping from 8 seconds
+        // Ensure the audio keeps looping from 8 seconds
         audio.addEventListener("timeupdate", function() {
-            if (audio.currentTime >= 8 + audio.duration - 8) {
-                audio.currentTime = 8; // Reset the audio to 8 seconds
+            if (audio.currentTime >= audio.duration - 8) {
+                audio.currentTime = 8; // Reset the audio to 8 seconds if it goes beyond
             }
         });
     </script>
