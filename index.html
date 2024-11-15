@@ -10,20 +10,30 @@
 <body>  
     <div>
         <h1>Want a break from the ads?</h1>
-        <button onclick="playAudio()">Click to Play Audio</button>
     </div>
 
     <!-- Audio element -->
-    <audio id="audio" loop preload="auto">
+    <audio id="audio" preload="auto">
         <source src="Wantabreakfromtheads.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        function playAudio() {
-            var audio = document.getElementById("audio");
-            audio.play();  // Play audio on button click
-        }
+        var audio = document.getElementById("audio");
+
+        // Set the starting point of the audio to 8 seconds
+        audio.addEventListener("canplaythrough", function() {
+            audio.currentTime = 8; // Start playing from 8 seconds
+            audio.loop = true; // Loop the audio
+            audio.play(); // Start playing the audio
+        });
+
+        // This will ensure the audio keeps looping from 8 seconds
+        audio.addEventListener("timeupdate", function() {
+            if (audio.currentTime >= 8 + audio.duration - 8) {
+                audio.currentTime = 8; // Reset the audio to 8 seconds
+            }
+        });
     </script>
 </body>
 </html>
