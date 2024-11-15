@@ -10,12 +10,20 @@
 <body>  
     <div>
         <h1>Want a break from the ads?</h1>
+        <button onclick="playAudio()">Click to Play Audio</button>
     </div>
 
-    <!-- Audio element with autoplay, loop, and preload -->
-    <audio id="audio" autoplay loop preload="auto">
+    <!-- Audio element -->
+    <audio id="audio" loop preload="auto">
         <source src="Want a break from the ads?.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("audio");
+            audio.play();  // Play audio on button click
+        }
+    </script>
 </body>
 </html>
